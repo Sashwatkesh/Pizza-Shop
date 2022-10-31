@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title%} Cart{% endblock %}
+{% block body %}
+<div class="container">
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>action</th>
+                <th>product</th>
+                <th>otto</th>
+                <th>price</th>
+                <th>qty</th>
+                <th>total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cart in carts.cart_item.all %}
+            <tr>
+                <th> <a href="{% url 'remove_cart_item' cart.uid %}" class=" btn btn-light">
+                    <i class='fas fa-trash' style='color: red'></i></a></th>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>
+                    <img src="/media/{{cart.pizza.image}}" style="height: 100px;width:150px;">
+                </td>
+                <td>{{cart.pizza.pizza_name}}</td>
+                <td>{{cart.pizza.price}}</td>
+                <td>1</td>
+                <td>{{cart.pizza.price}}</td>
+            </tr>
+            
+
+            {% endfor %}
+            <tr>
+                <th></th>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total</td>
+                <td>{{carts.get_cart_total}}
+                    <a href="{{payment_url}}" class="btn btn-success" >Pay Now</a>
+                </td>
+                
+            </tr>
+        </tbody>
+        
+    </table>
+</div>
+
+{% endblock %}

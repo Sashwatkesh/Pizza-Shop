@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %} home{% endblock %}
+{% block body %}
+
+<div class="container text-center">
+    <div class="row align-items-start">
+{% for  pizza in pizzas %}
+<div class="col">
+    
+<div class="container my-2">
+<div class="card" style="width: 18rem;">
+    <img src="/media/{{pizza.image}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{pizza.pizza_name}}</h5>
+      <p class="card-text">Price {{pizza.price}} | category <span class="badge text-bg-dark">{{pizza.category.category_name}}</span></p>
+      <a href="{% url 'Add_Cart' pizza.uid %}" class="btn btn-primary">Add TO Cart</a>
+    </div>
+  </div>
+</div>
+
+  </div>
+  {% endfor %}
+
+    </div></div>
+
+{% endblock %}
